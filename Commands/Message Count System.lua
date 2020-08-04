@@ -1,4 +1,9 @@
-{{/* Regex: .* */}}
+{{/*
+	Regex: .*
+	Commands:
+		-topmessages
+		-msgcount
+*/}}
 
 {{$x:=dbIncr .User.ID "msgCount" 1}}{{$list:=""}}
 {{if reFind `\A-m(?:essages?|sg)?c(?:ount)?` .Message.Content}}
