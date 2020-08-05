@@ -9,12 +9,14 @@
 {{$channelid := 740547487655526400}}
 
 {{/* do not edit below (unless you know what you're doing c: ) */}}
-{{$db:=dbGet .Channel.ID "stickymessage"}}
+{{$db:=dbGet .Channel.ID "stickymessage"}}{{$bump:=dbGet 0 "bump"}}
 {{if eq .Channel.ID $channelid}}
 	{{if $db}}
 		{{deleteMessage nil (toInt $db.Value) 0}}
 	{{end}}
-	{{if not (reFind `\A!d\sbump(\s+|\z)` .Message.Content)}}
+	{{if reFind `\A!d\sbump(\s+|\z)` .Message.Content}}
+		{{deleteTrigger 0}}
+	{{else if $bump}}
 		{{deleteTrigger 0}}
 	{{end}}
 	{{$id := sendMessageRetID nil (cembed "title" "Bump This Server!" "description" "Please bump this server by typing `!d bump`" "color" 123456)}}{{dbSet .Channel.ID "stickymessage" (str $id)}}
