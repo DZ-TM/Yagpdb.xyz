@@ -13,4 +13,4 @@ My plan for this github is to make it an easy to go to place for newbies to YAGP
 ## Contact Me
 **Feel free to contact me if you feel it's necessary.**
 
-[yay](https://media.discordapp.net/attachments/727216615875149844/740718292683194398/image0.jpg)
+![yay](https://media.discordapp.net/attachments/727216615875149844/740718292683194398/image0.jpg)
