@@ -10,4 +10,4 @@ My plan for this github is to make it an easy to go to place for newbies to YAGP
 - [x] HowGay Command
 
 # Contact Me
-**Feel free to contact me if you feel it's necessary.
+**Feel free to contact me if you feel it's necessary.**
