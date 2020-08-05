@@ -14,9 +14,7 @@
 	{{if $db}}
 		{{deleteMessage nil (toInt $db.Value) 0}}
 	{{end}}
-	{{if not (reFind `\A!d\sbump(\s+|\z)` .Message.Content)}}
-		{{deleteTrigger 0}}
-	{{else if $bump}}
+	{{if or (not (reFind `\A!d\sbump(\s+|\z)` .Message.Content)) $bump}}
 		{{deleteTrigger 0}}
 	{{end}}
 	{{$id := sendMessageRetID nil (cembed "title" "Bump This Server!" "description" "Please bump this server by typing `!d bump`" "color" 123456)}}{{dbSet .Channel.ID "stickymessage" (str $id)}}
