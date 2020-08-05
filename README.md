@@ -12,4 +12,4 @@ My plan for this github is to make it an easy to go to place for newbies to YAGP
 
 ## Contact Me
 **Feel free to contact me if you feel it's necessary.**
-[Yay](https://cdn.discordapp.com/attachments/727216615875149844/740717531722940486/image0.jpg)
+[]( https://cdn.discordapp.com/attachments/727216615875149844/740717531722940486/image0.jpg )
