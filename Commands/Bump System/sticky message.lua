@@ -14,7 +14,7 @@
 	{{if $db}}
 		{{deleteMessage nil (toInt $db.Value) 0}}
 	{{end}}
-	{{if reFind `\A!d\sbump(\s+|\z)` .Message.Content}}
+	{{if not (reFind `\A!d\sbump(\s+|\z)` .Message.Content)}}
 		{{deleteTrigger 0}}
 	{{else if $bump}}
 		{{deleteTrigger 0}}
