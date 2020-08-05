@@ -14,6 +14,6 @@
 	{{editChannelName $voicechannelid "Bump Now!"}}
 {{else}}
 	{{if and (eq .Channel.ID $bumpchannelid) (not (dbGet 0 "bump"))}}
-		{{dbSetExpire 0 "bump" 1 86400}}{{editChannelName $voicechannelid (print "Next Bump in " (((dbGet 0 "bump").ExpiresAt.Sub currentTime).Round .TimeSecond))}}{{execAdmin "giverep" .User}}{{execCC .CCID nil 86400 "data"}}
+		{{sleep 1}}{{dbSetExpire 0 "bump" 1 86400}}{{editChannelName $voicechannelid (print "Next Bump in " (((dbGet 0 "bump").ExpiresAt.Sub currentTime).Round .TimeSecond))}}{{execAdmin "giverep" .User}}{{execCC .CCID nil 86400 "data"}}
 	{{end}}
 {{end}}
