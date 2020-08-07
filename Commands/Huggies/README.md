@@ -14,15 +14,15 @@ The -hug command hugs a user, if no user is mentioned or no user's ID is inputte
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741336260551114833/image0.png)
 
+**-hug this is an example**
+
+[add image later]()
+
 **-hug @Maventine#6669 this is an example**
 
-[add image later]()
+![](https://cdn.discordapp.com/attachments/724940659240337441/741337891569008780/image0.png)
 
 **-hug @DZ#6669 this is an example**
-
-[add image later]()
-
-**-hug this is an example**
 
 [add image later]()
 
