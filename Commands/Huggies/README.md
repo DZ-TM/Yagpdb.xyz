@@ -16,7 +16,7 @@ The -hug command hugs a user, if no user is mentioned or no user's ID is inputte
 
 **-hug this is an example**
 
-[add image later]()
+![](https://cdn.discordapp.com/attachments/724940659240337441/741338562263515317/image0.png)
 
 **-hug @Maventine#6669 this is an example**
 
