@@ -16,7 +16,7 @@
 	{{$user =userArg (index .CmdArgs 0)}}
 	{{if $user}}
 		{{if gt (len .CmdArgs) 1}}
-			{{$desc =joinStr " " (cslice .CmdArgs 1)}}
+			{{$desc =joinStr " " (slice .CmdArgs 1)}}
 		{{end}}
 		{{if ne $user.ID .User.ID}}
 			{{$title =print .User.Username " gave " $user.Username " a huggie!"}}{{$footer =print $footer "\n" $user.Username " got hugged " (dbIncr $user.ID "gotHugged" 1) " times!"}}
