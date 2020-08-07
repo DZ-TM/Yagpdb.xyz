@@ -12,7 +12,7 @@ The -hug command hugs a user, if no user is mentioned or no user's ID is inputte
 
 **-hug @DZ#6669**
 
-![](https://cdn.discordapp.com/attachments/724940659240337441/741334038727622726/image0.png)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741336260551114833/image0.png)
 
 **-hug @Maventine#6669 this is an example**
 
