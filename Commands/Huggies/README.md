@@ -3,21 +3,27 @@ The -hug command hugs a User, if no mention or id is inputted as the first comma
 
 # Examples
 **-hug**
+
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741334270081237083/image0.png)
 
 **-hug @Maventine#6669**
+
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741333767750156288/image0.png)
 
 **-hug @DZ#6669**
+
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741334038727622726/image0.png)
 
 **-hug @Maventine#6669 this is an example**
+
 [add image later]()
 
 **-hug @DZ#6669 this is an example**
+
 [add image later]()
 
 **-hug this is an example**
+
 [add image later]()
 
 ## Contact Me
