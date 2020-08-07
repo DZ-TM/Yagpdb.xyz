@@ -8,5 +8,6 @@
 				{{- $newWords =$newWords.Append .}}
 			{{- end -}}
 		{{end}}
+		{{$banW =$newWords}}
 	{{end}}
 {{end}}
