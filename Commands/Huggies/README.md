@@ -33,4 +33,4 @@
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741338562263515317/image0.png)
 
 ## Contact Me
-**If you find any errors or would like to suggest something, contact me via Discord, my information is listed above.**
+**If you find any errors or would like to suggest something, contact me via Discord, my contact information is DZ#6669 (438789314101379072).**
