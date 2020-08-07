@@ -1,6 +1,6 @@
 ## Thing Included
 - Includes comments
-- Allows for mentions or user ids
+- Allows for mentions or user IDs
 - Saves a count database for how many times a user has been hugged
 - Saves a count database for how many times a user has hugged someone
 - Cute hug gifs/images
