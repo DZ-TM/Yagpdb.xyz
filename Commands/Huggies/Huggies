@@ -25,7 +25,7 @@
 			{{$title =print .User.Username " gave themselves a huggie!"}}
 		{{end}}
 	{{else}}
-		{{$title =print .User.Username " gave themselves a huggie!"}}{{$desc =joinStr " " .CmdArgs}}
+		{{$title =print .User.Username " gave themselves a huggie!"}}{{$desc =.StrippedMsg}}
 	{{end}}
 {{else}}
 	{{$title =print .User.Username " gave themselves a huggie!"}}
