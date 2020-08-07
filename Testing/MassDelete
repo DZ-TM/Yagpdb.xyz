@@ -1,0 +1,18 @@
+{{/* deletes all words containing .StrippedMsg in the banned words list */}}
+
+{{$massDel:=cslice}}{{$banW:=(cslice).AppendSlice (dbGet 0 "bannedWords").Value}}{{$newWords:=cslice}}
+{{if reFind `(?i)massdel(?:ete)?` .Cmd}}
+	{{if .StrippedMsg}}
+		{{range $banW}}
+			{{- if reFind (print `(\b|\s*\/)` (reReplace "[^\\w]" $.StrippedMsg "") `(/\S*|\S*)`) .}}
+				{{- $massDel =$massDel.Append .}}
+			{{- end -}}
+		{{end}}
+		{{range $banW}}
+			{{- if not (inFold $massDel .)}}
+				{{- $newWords =$newWords.Append .}}
+			{{- end -}}
+		{{end}}
+		{{$banW =$newWords}}
+	{{end}}
+{{end}}
