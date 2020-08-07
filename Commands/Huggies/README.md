@@ -1,4 +1,4 @@
-# Thing Included
+## Thing Included
 - Includes comments
 - Allows for mentions
 - Saves a count database for how many times a user has been hugged
