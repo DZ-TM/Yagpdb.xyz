@@ -1,5 +1,9 @@
-# What does it do?
-The -hug command hugs a user, if no user is mentioned or no user's ID is inputted as the first command argument, it defaults to hugging yourself. It saves a database for every time a user gets hugged and a separate database for every time a user hugs someone.
+# Thing Included
+- Includes comments
+- Allows for mentions
+- Saves a count database for how many times a user has been hugged
+- Saves a count database for how many times a user has hugged someone
+- Cute hug gifs/images
 
 ## Examples
 **-hug**
