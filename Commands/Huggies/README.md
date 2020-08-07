@@ -5,6 +5,7 @@
 - Saves a count database for how many times a user has hugged someone
 - Cute hug gifs/images
 - Embed colour is changed to the highest role with a colour, if none, defaults to green
+
 **See examples below**
 
 ## Examples
