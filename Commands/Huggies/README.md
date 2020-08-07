@@ -1,7 +1,7 @@
 # What does it do?
 The -hug command hugs a User, if no mention or id is inputted as the first command argument, it defaults to hugging yourself. It saves a database for every time a user gets hugged and a separate database for every time a user hugs someone.
 
-# Examples
+## Examples
 **-hug**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741335534030553268/image0.png)
