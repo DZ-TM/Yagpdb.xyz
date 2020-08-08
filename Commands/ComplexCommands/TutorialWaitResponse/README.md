@@ -11,7 +11,7 @@
 
 **See examples below**
 
-## Starting the tutorial
+## Tutorial
 
 **-trigger**
 
