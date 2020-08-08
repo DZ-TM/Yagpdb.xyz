@@ -17,37 +17,37 @@
 
 ## Tutorial
 
-**-trigger**
+> **-trigger**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741691324851421264/image0.png)
 
-**50**
+> **50**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741691531207114852/image0.png)
 
-**This is an example message to show how this command works.**
+> **This is an example message to show how this command works.**
 
 ![](https://media.discordapp.net/attachments/724940659240337441/741691785725870200/image0.png)
 
-**finished**
+> **finished**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692174340718592/image0.png)
 
 ## Cancel & Error Messages
 
-**cancel**
+> **cancel**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692367584755805/image0.png)
 
-**101**
+> **101**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692540440412281/image0.png)
 
-**Example Message**
+> **Example Message**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692737623162960/image0.png)
 
-**Not finished**
+> **Not finished**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692955085111296/image0.png)
 
