@@ -1,3 +1,5 @@
+## Notes
+- This was made as an example of how a wait response system would work, thus why it shows multiple examples but does not show for any precise usage.
 ## Thing Included
 - Nice user interface
 - Allows for user to input data
@@ -13,36 +15,37 @@
 
 **-trigger**
 
-![](https://cdn.discordapp.com/attachments/724940659240337441/741335534030553268/image0.png)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741691324851421264/image0.png)
 
 **50**
 
-![](https://cdn.discordapp.com/attachments/724940659240337441/741333767750156288/image0.png)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741691531207114852/image0.png)
 
 **This is an example message to show how this command works.**
 
-![](https://cdn.discordapp.com/attachments/724940659240337441/741336260551114833/image0.png)
+![](https://media.discordapp.net/attachments/724940659240337441/741691785725870200/image0.png)
 
 **finished**
 
-![](https://cdn.discordapp.com/attachments/724940659240337441/741338562263515317/image0.png)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741692174340718592/image0.png)
 
 ## Cancel & Error Messages
 
 **cancel**
 
-![](https://cdn.discordapp.com/attachments/724940659240337441/741337891569008780/image0.png)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741692367584755805/image0.png)
 
 **101**
 
-![](https://cdn.discordapp.com/attachments/724940659240337441/741338562263515317/image0.png)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741692540440412281/image0.png)
 
 **Example Message**
 
-![](image)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741692737623162960/image0.png)
 
 **Not finished**
 
-![](image)
+![](https://cdn.discordapp.com/attachments/724940659240337441/741692955085111296/image0.png)
+
 ## Contact Me
 **If you find any errors or would like to suggest something, contact me via Discord, my contact information is DZ#6669 (438789314101379072).**
