@@ -9,27 +9,27 @@
 **See examples below**
 
 ## Examples
-**-hug**
+> **-hug**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741335534030553268/image0.png)
 
-**-hug @Maventine#6669**
+> **-hug @Maventine#6669**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741333767750156288/image0.png)
 
-**-hug @DZ#6669**
+> **-hug @DZ#6669**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741336260551114833/image0.png)
 
-**-hug this is an example**
+> **-hug this is an example**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741338562263515317/image0.png)
 
-**-hug @Maventine#6669 this is an example**
+> **-hug @Maventine#6669 this is an example**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741337891569008780/image0.png)
 
-**-hug @DZ#6669 this is an example**
+> **-hug @DZ#6669 this is an example**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741338562263515317/image0.png)
 
