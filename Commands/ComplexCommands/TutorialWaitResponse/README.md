@@ -9,7 +9,7 @@
 - Lots of comments to make it easy to learn
 - Shows examples of 3 different ways to grab data from the user, an integer, a string with requirements and an exact match
 - Error messages
-- If no response after 60s, tutorial is cancelled
+- If there is no response after 60s, tutorial is cancelled
 - Type "cancel" to stop your tutorial at any time
 - Embed colour is changed to the highest role with a colour, if none, defaults to green
 
