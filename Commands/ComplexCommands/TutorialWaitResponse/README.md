@@ -2,7 +2,7 @@
 - This was made as an example of how a wait response system would work, thus why it shows multiple examples but does not show for any precise usage.
 
 ## Plan to add
-- "No response after 60s" message, will add when I have more spare time
+- "No response after 60s" message, will add when I have more spare time.
 ## Thing Included
 - Nice user interface
 - Allows for user to input data
