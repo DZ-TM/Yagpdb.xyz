@@ -26,79 +26,107 @@
 {{/* sets default value for $embed */}}
 {{$embed:=sdict "author" (sdict "icon_url" (.User.AvatarURL "256") "name" (print "User: " .User.String)) "footer" (sdict "text" "Type cancel to cancel the tutorial.") "color" $colour}}
 
-{{/* if no database */}}
-{{if not $databaseValue}}
+{{/* checks if it was executed by scheduleUniqueCC */}}
+{{if .ExecData}}
 
-	{{/* checks if message matches regex to begin tutorial */}}
-	{{if reFind (print `\A(?i)` $trigger `(\s+|\z)`) .Message.Content}}
+	{{/* sets timed out embed message */}}
+	{{$embed.Set "title" "Tutorial Timed Out!"}}
+	{{$embed.Set "description" (print "You have not entered a response after " $timer " seconds. As such, the tutorial has been cancelled.")}}
 
-		{{/* sets embed for tutorial */}}
-		{{$embed.Set "title" "Activating Tutorial"}}
-		{{$embed.Set "description" "Please enter a **positive** number **below 100**."}}
+	{{/* sends message */}}
+	{{sendMessage nil (cembed $embed)}}
 
-		{{/* sets $changeStage to true for usage later */}}
-		{{$changeStage =1}}
-	{{end}}
-
-{{/* if $databaseValue has a value */}}
+{{/* checks if it was not executed by scheduleUniqueCC */}}
 {{else}}
 
-	{{/* checks if $databaseValue is set to the first stage */}}
-	{{if eq $databaseValue 1}}
+	{{/* if no database */}}
+	{{if not $databaseValue}}
 
-		{{/* checks if the entire message content is a number */}}
-		{{with toInt .Message.Content}}
+		{{/* checks if message matches regex to begin tutorial */}}
+		{{if reFind (print `\A(?i)` $trigger `(\s+|\z)`) .Message.Content}}
 
-			{{/* checks if the number is a positive number below 100 */}}
-			{{if and (gt . 0) (le . 100)}}
+			{{/* sets embed for tutorial */}}
+			{{$embed.Set "title" "Activating Tutorial"}}
+			{{$embed.Set "description" "Please enter a **positive** number **below 100**."}}
 
-				{{/* sets tutorial to seconds stage */}}
-				{{$embed.Set "title" "Stage 2"}}
-				{{$embed.Set "description" (print "Thank you for your input of `" . "`\n\nPlease enter a sentence with **more than 3 words and more than 25 characters**.")}}
+			{{/* sets $changeStage to true for usage later and replaces delay for "cancelled" with $timer */}}
+			{{$changeStage =1}}
+			{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
+		{{end}}
 
-				{{/* sets $changeStage to true for usage later */}}
-				{{$changeStage =1}}
+	{{/* if $databaseValue has a value */}}
+	{{else}}
 
-			{{/* if user inputted incorrect details */}}
+		{{/* checks if $databaseValue is set to the first stage */}}
+		{{if eq $databaseValue 1}}
+
+			{{/* checks if the entire message content is a number */}}
+			{{with toInt .Message.Content}}
+
+				{{/* checks if the number is a positive number below 100 */}}
+				{{if and (gt . 0) (le . 100)}}
+
+					{{/* sets tutorial to seconds stage */}}
+					{{$embed.Set "title" "Stage 2"}}
+					{{$embed.Set "description" (print "Thank you for your input of `" . "`\n\nPlease enter a sentence with **more than 3 words and more than 25 characters**.")}}
+
+					{{/* sets $changeStage to true for usage later */}}
+					{{$changeStage =1}}
+
+				{{/* if user inputted incorrect details */}}
+				{{else}}
+
+					{{/* gives error message for incorrect input for stage 1 */}}
+					{{$embed.Set "title" "Incorrect Input"}}
+					{{$embed.Set "description" "Please enter a **positive** number **below 100**."}}
+
+					{{/* sets $changeStage to false for usage later */}}
+					{{$changeStage =0}}
+				{{end}}
+
+			{{/* if not number inputted */}}
 			{{else}}
 
 				{{/* gives error message for incorrect input for stage 1 */}}
 				{{$embed.Set "title" "Incorrect Input"}}
 				{{$embed.Set "description" "Please enter a **positive** number **below 100**."}}
 
+
 				{{/* sets $changeStage to false for usage later */}}
-				{{$changeStage =0}}
+				{{$changeStage = 0}}
 			{{end}}
 
-		{{/* if not number inputted */}}
-		{{else}}
+			{{/* replaces delay for "cancelled" with $timer */}}
+			{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
 
-			{{/* gives error message for incorrect input for stage 1 */}}
-			{{$embed.Set "title" "Incorrect Input"}}
-			{{$embed.Set "description" "Please enter a **positive** number **below 100**."}}
+		{{/* checks if $databaseValue is set to the second stage */}}
+		{{else if eq $databaseValue 2}}
 
+			{{/* checks if there is content */}}
+			{{if .Args}}
 
-			{{/* sets $changeStage to false for usage later */}}
-			{{$changeStage = 0}}
-		{{end}}
+				{{/* checks if there are at least 3 words and 25 character */}}
+				{{if and (ge (len .Args) 3) (ge (len (toRune .Message.Content)) 25)}}
 
-	{{/* checks if $databaseValue is set to the second stage */}}
-	{{else if eq $databaseValue 2}}
+					{{/* sets tutorial to third stage */}}
+					{{$embed.Set "title" "Stage 3"}}
+					{{$embed.Set "description" (print "Thank you for your input of `" .Message.Content "`\n\nPlease enter `finished` to complete your tutorial.")}}
 
-		{{/* checks if there is content */}}
-		{{if .Args}}
+					{{/* sets $changeStage to true for usage later */}}
+					{{$changeStage =1}}
 
-			{{/* checks if there are at least 3 words and 25 character */}}
-			{{if and (ge (len .Args) 3) (ge (len (toRune .Message.Content)) 25)}}
+				{{/* if user inputted incorrect data */}}
+				{{else}}
 
-				{{/* sets tutorial to third stage */}}
-				{{$embed.Set "title" "Stage 3"}}
-				{{$embed.Set "description" (print "Thank you for your input of `" .Message.Content "`\n\nPlease enter `finished` to complete your tutorial.")}}
+					{{/* sets tutorial to third stage */}}
+					{{$embed.Set "title" "Incorrect Input"}}
+					{{$embed.Set "description" "Please enter at least 3 words and 25 characters."}}
 
-				{{/* sets $changeStage to true for usage later */}}
-				{{$changeStage =1}}
+					{{/* sets $changeStage to false for usage later */}}
+					{{$changeStage =0}}
+				{{end}}
 
-			{{/* if user inputted incorrect data */}}
+			{{/* if nothing inputted */}}
 			{{else}}
 
 				{{/* sets tutorial to third stage */}}
@@ -109,55 +137,54 @@
 				{{$changeStage =0}}
 			{{end}}
 
-		{{/* if nothing inputted */}}
-		{{else}}
+			{{/* replaces delay for "cancelled" with $timer */}}
+			{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
 
-			{{/* sets tutorial to third stage */}}
-			{{$embed.Set "title" "Incorrect Input"}}
-			{{$embed.Set "description" "Please enter at least 3 words and 25 characters."}}
+		{{/* checks if $databaseValue is set to the third stage */}}
+		{{else if eq $databaseValue 3}}
 
-			{{/* sets $changeStage to false for usage later */}}
-			{{$changeStage =0}}
+			{{/* checks if message content is equal to "finished" */}}
+			{{if eq (lower .Message.Content) "finished"}}
+
+				{{/* sets tutorial to third stage */}}
+				{{$embed.Set "title" "Tutorial Finished!"}}
+				{{$embed.Set "description" (print "Thank you for your input of `" .Message.Content "`\n\nYou have officially finished your tutorial.")}}
+
+
+				{{/* deletes database for "waitResponse" */}}
+				{{dbDel .User.ID "waitResponse"}}
+
+				{{/* sets $changeStage to false for later usage and cancels the execution of "cancelled" */}}
+				{{$changeStage =0}}
+				{{cancelScheduledUniqueCC .CCID "cancelled"}}
+
+			{{/* if user inputted incorrect data */}}
+			{{else}}
+
+				{{/* error message for last stage */}}
+				{{$embed.Set "title" "Incorrect Input"}}
+				{{$embed.Set "description" "Please enter `finished` to finish your tutorial."}}
+
+				{{/* sets $changeStage to false for usage later and replaces delay for "cancelled" with $timer */}}
+				{{$changeStage =0}}
+				{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
+			{{end}}
 		{{end}}
 
-	{{/* checks if $databaseValue is set to the third stage */}}
-	{{else if eq $databaseValue 3}}
+		{{/* checks if user inputted cancel */}}
+		{{if eq (lower .Message.Content) "cancel"}}
 
-		{{/* checks if message content is equal to "finished" */}}
-		{{if eq (lower .Message.Content) "finished"}}
+			{{/* sets embed to "tutorial was cancelled message" */}}
+			{{$embed.Set "title" "Tutorial was Cancelled"}}
+			{{$embed.Set "description" (print (or .Member.Nick .User.Username) " has decided to cancel the tutorial.")}}
 
-			{{/* sets tutorial to third stage */}}
-			{{$embed.Set "title" "Tutorial Finished!"}}
-			{{$embed.Set "description" (print "Thank you for your input of `" .Message.Content "`\n\nYou have officially finished your tutorial.")}}
-
-			{{/* deletes database and sets $changeStage to false as the tutorial is finished */}}
-			{{$changeStage =0}}
+			{{/* deletes database for "waitResponse" */}}
 			{{dbDel .User.ID "waitResponse"}}
 
-		{{/* if user inputted incorrect data */}}
-		{{else}}
-
-			{{/* error message for last stage */}}
-			{{$embed.Set "title" "Incorrect Input"}}
-			{{$embed.Set "description" "Please enter `finished` to finish your tutorial."}}
-
-			{{/* sets $changeStage to false for usage later */}}
+			{{/* sets $changeStage to false for later usage and cancels the execution for "cancelled" */}}
 			{{$changeStage =0}}
+			{{cancelScheduledUniqueCC .CCID "cancelled"}}
 		{{end}}
-	{{end}}
-
-	{{/* checks if user inputted cancel */}}
-	{{if eq (lower .Message.Content) "cancel"}}
-
-		{{/* sets embed to "tutorial was cancelled message" */}}
-		{{$embed.Set "title" "Tutorial was Cancelled"}}
-		{{$embed.Set "description" (print (or .Member.Nick .User.Username) " has decided to cancel the tutorial.")}}
-
-		{{/* deletes database for "waitResponse" */}}
-		{{dbDel .User.ID "waitResponse"}}
-
-		{{/* sets $changeStage to false for later usage */}}
-		{{$changeStage =0}}
 	{{end}}
 {{end}}
 
