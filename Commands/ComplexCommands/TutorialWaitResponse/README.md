@@ -43,7 +43,7 @@
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692540440412281/image0.png)
 
-> **Example Message**
+> **Example message**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692737623162960/image0.png)
 
