@@ -1,10 +1,9 @@
 ## Notes
 - This was made as an example of how a wait response system would work, thus why it shows multiple examples but does not show for any precise usage.
 
-## Plan to add
-- "No response after 60s" message, will add when I have more spare time.
 ## Thing Included
 - Nice user interface
+- Message to let the user know their tutorial has timed out
 - Allows for user to input data
 - Lots of comments to make it easy to learn
 - Shows examples of 3 different ways to grab data from the user, an integer, a string with requirements and an exact match
@@ -33,11 +32,15 @@
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692174340718592/image0.png)
 
-## Cancel & Error Messages
+## Cancel, Timed Out & Error Messages
 
 > **cancel**
 
 ![](https://cdn.discordapp.com/attachments/724940659240337441/741692367584755805/image0.png)
+
+> **Timed Out**
+
+![](https://cdn.discordapp.com/attachments/724940659240337441/742154638291107930/image0.png)
 
 > **101**
 
