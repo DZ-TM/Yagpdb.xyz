@@ -1,6 +1,6 @@
 {{/*
 	 Made by DZ#6669 (438789314101379072)
-	 Inspired by Maventine#6669 (480561240813600768)
+	 Inspired by Maventine#0001 (480561240813600768)
 
 	 Trigger Type: RegEx
 	 Trigger: \A(?:-\s?|<@!?204255221017214977>\s*)hug(?:gies?|gy|ged)?(\s+|\z)
