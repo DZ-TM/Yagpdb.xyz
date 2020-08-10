@@ -3,6 +3,7 @@ My plan for this github is to make it an easy to go to place for newbies to YAGP
 ## Current Custom Commands
 *As of right now these are the current commands I have or plan to create:*
 - [x] Bump System
+- [x] Huggies Command
 - [x] Tutorial - waitResponse Example
 - [ ] Banned Words System
 - [ ] Profile System
