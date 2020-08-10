@@ -3,7 +3,7 @@
 	 Inspired by Maventine#0001 (480561240813600768)
 
 	 Trigger Type: RegEx
-	 Trigger: \A(?:-\s?|<@!?204255221017214977>\s*)hug(?:gies?|gy|ged)?(\s+|\z)
+	 Trigger: \A(?:-\s?|<@!?204255221017214977>\s*)hug(?:gies?|gy|ged)?(?:\s+|\z)
 */}}
 
 {{/* do not edit below (unless you know what you're doing c: ) */}}
