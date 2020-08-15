@@ -11,7 +11,7 @@
 {{/* do not edit below (unless you know what you're doing c: ) */}}
 {{$db:=dbGet 0 "bump"}}
 {{if $db}}
-	{{editChannelName $channelid (print "Next Bump in " (((dbGet 0 "bump").ExpiresAt.Sub currentTime).Round .TimeSecond))}}
+	{{editChannelName $channelid (print "Next Bump in " (($db.ExpiresAt.Sub currentTime).Round .TimeSecond))}}
 {{else}}
 	{{editChannelName $channelid "Bump Now!"}}
 {{end}}
