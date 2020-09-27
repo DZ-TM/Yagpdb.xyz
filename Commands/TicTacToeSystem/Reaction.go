@@ -10,12 +10,7 @@
 {{$players:=cslice "❌" "⭕️"}}{{/* emoji for players, follows same format as $emotes */}}
 
 {{/* do not edit below */}}
-{{$emoIndex:=dict "x" (index $players 0) "o" (index $players 1)}}
-{{$emoteCheck:=cslice}}
-{{$emoteData:=cslice}}
-{{$desc:=""}}
-{{$fURL:=""}}
-{{$fText:=""}}
+{{$emoIndex:=dict "x" (index $players 0) "o" (index $players 1)}}{{$emoteCheck:=cslice}}{{$emoteData:=cslice}}{{$desc:=""}}{{$fURL:=""}}{{$fText:=""}}
 {{range $i,$_:=$emotes}}
 	{{- $emoIndex.Set $i (reFind `(?:[\w~]{2,32}|[\x{1f1e6}-\x{1f1ff}]{2}|\p{So}\x{fe0f}?[\x{1f3fb}-\x{1f3ff}]?(?:\x{200D}\p{So}\x{fe0f}?[\x{1f3fb}-\x{1f3ff}]?)*|[#\d*]\x{FE0F}?\x{20E3})` $_)}}
 	{{- $emoteCheck =$emoteCheck.Append (print (reFind `(?:[\w~]{2,32}|[\x{1f1e6}-\x{1f1ff}]{2}|\p{So}\x{fe0f}?[\x{1f3fb}-\x{1f3ff}]?(?:\x{200D}\p{So}\x{fe0f}?[\x{1f3fb}-\x{1f3ff}]?)*|[#\d*]\x{FE0F}?\x{20E3})` $_) ":" (or (reReplace `>\z` (reFind `\d{17,19}>\z` $_) "") "empty"))}}
