@@ -15,3 +15,5 @@
 
 ## Contact Me
 *If you receive an error outside what was mentioned, please contact me. My contact information is DZ#6669 (438789314101379072) in Discord.*
+
+![](https://1.bp.blogspot.com/-yZ-jIaDU1-k/XeXdWWuc0aI/AAAAAAAAick/WPXbKu-Lr2wY-KI7G0pTyiCteJ7AAii5gCLcBGAsYHQ/s2560/cute_anime_girl_4k_2-1080x1920.jpg)
