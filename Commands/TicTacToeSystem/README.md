@@ -1,6 +1,6 @@
 ## Consists Of:
 - Two players 3x3 TicTacToe games.
-- Checks for a is a winner or draw.
+- Checks for a winner or draw.
 - Everything is set up for you, easy to customise if necessary.
 
 ## Configuration Rules:
