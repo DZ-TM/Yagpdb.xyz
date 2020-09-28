@@ -1,7 +1,7 @@
 {{/*
 	Made by DZ#6669 (438789314101379072)
 	Trigger Type: RegEx
-	Trigger: \A(?:-|<@!?204255221017214977>)\s*(?:tictactoe|ttt)(?:\s+|\z)
+	Trigger: \A(?:\-|<@!?204255221017214977>)\s*(?:tictactoe|ttt)(?:\s+|\z)
 */}}
  
 {{/* configuration area */}}
