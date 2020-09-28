@@ -7,16 +7,16 @@
 
 {{/* configuration area */}}
 {{$voicechannelid := 740556133038555246}}
-{{$bumpchannelid := 740547487655526400}}
 {{$message := "Thanks for bumping us!"}}
 
 {{/* do not edit below (unless you know what you're doing c: ) */}}
 {{if .ExecData}}
 	{{editChannelName $voicechannelid "Bump Now!"}}
 {{else}}
-	{{if and (eq .Channel.ID $bumpchannelid) (not (dbGet 0 "bump"))}}
+	{{if not (dbGet 0 "bump")}}
 		{{dbSetExpire 0 "bump" 1 7200}}
-		{{editChannelName $voicechannelid (print "Next Bump in " (((dbGet 0 "bump").ExpiresAt.Sub currentTime).Round .TimeSecond))}}{{execAdmin "giverep" .User}}
+		{{editChannelName $voicechannelid (print "Next Bump in " (((dbGet 0 "bump").ExpiresAt.Sub currentTime).Round .TimeSecond))}}
+		{{execAdmin "giverep" .User}}
 		{{execCC .CCID nil 7200 "data"}}
 		{{sendMessage nil (cembed "title" "Bump!" "description" $message)}}
 	{{end}}
