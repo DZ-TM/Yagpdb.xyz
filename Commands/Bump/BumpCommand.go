@@ -16,7 +16,6 @@
 	{{if not (dbGet 0 "bump")}}
 		{{dbSetExpire 0 "bump" 1 7200}}
 		{{editChannelName $voicechannelid (print "Next Bump in " (((dbGet 0 "bump").ExpiresAt.Sub currentTime).Round .TimeSecond))}}
-		{{execAdmin "giverep" .User}}
 		{{execCC .CCID nil 7200 "data"}}
 		{{sendMessage nil (cembed "title" "Bump!" "description" $message)}}
 	{{end}}
