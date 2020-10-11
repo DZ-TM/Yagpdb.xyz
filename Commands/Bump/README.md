@@ -29,7 +29,7 @@ These custom commands are meant to be used alongside bumpbot
 
 - Disboard does not have the power to forbid that but will remove you from their service if you do so.
 
-## #BlameDisboard with this bullshit here
+**#BlameDisboard with this bullshit here**
 
 
 <h1 align="center"><img src="https://i.imgur.com/WUL0zgc.png"></img></h1>
