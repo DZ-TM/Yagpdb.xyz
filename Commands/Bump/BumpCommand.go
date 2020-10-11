@@ -19,7 +19,7 @@
 {{else}}
 	{{if not (dbGet 0 "bump")}}
 		{{dbSetExpire 0 "bump" 1 7200}}
-		{{editChannelName $voiceChannelID (print "Next Bump in " (((dbGet 0 "bump).ExpiresAt.Sub currentTime).Round .TimeSecond))}}
+		{{editChannelName $voiceChannelID "Next Bump in 24h0m0s"}}
 		{{execCC .CCID nil 7200 "data"}}
 		{{sendMessage nil (cembed "title" "Bump!" "description" $thanksMessage)}}
 	{{end}}
