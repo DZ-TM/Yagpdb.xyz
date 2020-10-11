@@ -6,7 +6,7 @@
 */}}
 
 {{/* configuration area */}}
-{{$voiceChannelID := 740556133038555246}}
+{{$voiceChannelID := 740556133038555246}}{{/* channel at which the bot edits its name */}}
 {{$thanksMessage := "Thanks for bumping us!"}}{{/* thanks message if the user successfully bumps the server */}}
 {{$bumpChannel := 764595403219664898}}{{/* channel to send the message telling users it is possible to bump again */}}
 {{$bumpPing := "<@&724944927330533407>"}}{{/* role to ping when it is possible to bump once again */}}
