@@ -24,7 +24,8 @@ These custom commands are meant to be used alongside bumpbot
 
 - deletes message if not correct channel / if not correct time
 
-We are not allowed to give __roles as rewards__ for bumps.  
+## Disboard Bullshit
+-we are not allowed to give __roles as rewards__ for bumps.  
 
 Disboard does not have the power to forbid that but will remove you from their service if you do so.
 
