@@ -29,7 +29,7 @@ These custom commands are meant to be used alongside bumpbot
 
 - Disboard does not have the power to forbid that but will remove you from their service if you do so.
 
-- STOP DISBOARD FROM FORCING US TO NOT REWARD USERS FOR THEIR ACTIONS
+- **ST*OP DISBOARD FROM FORCING US TO NOT REWARD USERS FOR THEIR ACTIONS*
 
 **#BlameDisboard with this bullshit here**
 
