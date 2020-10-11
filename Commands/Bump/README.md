@@ -30,7 +30,8 @@ Disboard does not have the power to forbid that but will remove you from their s
 
 ## #BlameDisboard with this bullshit here
 
-![][https://i.imgur.com/WUL0zgc.png]
+
+<h1 align="center"><img src="https://i.imgur.com/WUL0zgc.png"></img>&nbspBlameDisboard</h1>
 
 
 
