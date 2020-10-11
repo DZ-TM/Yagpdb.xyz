@@ -15,7 +15,7 @@
 {{/* do not edit below (unless you know what you're doing c: ) */}}
 {{if .ExecData}}
 	{{editChannelName $voiceChannelID "Bump Now!"}}
-	{{sendMessage $bumpChannel (complexMessage "content" $bumpPing "embed" (cembed "title" "Bump" "description" $bumpMessage))}}
+	{{sendMessageNoEscape $bumpChannel (complexMessage "content" $bumpPing "embed" (cembed "title" "Bump" "description" $bumpMessage))}}
 {{else}}
 	{{if not (dbGet 0 "bump")}}
 		{{dbSetExpire 0 "bump" 1 7200}}
