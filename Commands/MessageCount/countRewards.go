@@ -16,7 +16,7 @@
         {{- /* Checks if the user has a message count >= each KEY of the rewards AND that they do not already have that role reward */}}
 
             {{- addRoleID $v -}}
-            {{/* Adds the role(s) corresponding to the VALUE of the rewards if true */}}
+            {{- /* Adds the role(s) corresponding to the VALUE of the rewards if true */}}
 
 			      {{- print "Congrats! You messaged **" $db.Value "** times and earned the <@&" $v "> role!\n" -}}
 			      {{- /* Sends the congrats message */}}
