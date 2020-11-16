@@ -10,7 +10,7 @@
 {{/* Checks if they have a message count */}}
 
     {{range $k, $v := $rewards -}}
-    {{/* Ranges the KEY:VALUE pairs of the rewards */}}
+    {{- /* Ranges the KEY:VALUE pairs of the rewards */}}
 
         {{- if and (ge (toInt $db.Value) $k) (not (hasRoleID $v)) -}}
         {{/* Checks if the user has a message count >= each KEY of the rewards AND that they do not already have that role reward */}}
