@@ -41,7 +41,7 @@
 		{{.Set "icon_url" .IconURL}}
 	{{end}}
 	{{range $delete}}
-		{{- $embed.Del . -}}
+		{{- $embed.Del (lower .|title) -}}
 	{{end}}
 	{{range $i,$_:=$pages}}
 		{{- $_.Set "description" (print (or $_.description "") "[\u200b](" $i ")")}}
