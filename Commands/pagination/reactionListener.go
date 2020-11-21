@@ -40,7 +40,6 @@
 	{{with $embed.Footer}}
 		{{.Set "icon_url" .IconURL}}
 	{{end}}
- 
 	{{range $delete}}
 		{{- $embed.Del . -}}
 	{{end}}
