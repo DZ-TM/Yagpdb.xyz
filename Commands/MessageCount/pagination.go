@@ -11,7 +11,7 @@
 {{ $page := 1 }} {{/* The current page */}}
 {{ with and (eq .ReactionMessage.Author.ID 204255221017214977) .ReactionMessage.Embeds }} {{/* Checks for validity */}}
 	{{ $embed := index . 0 }} {{/* The first embed */}}
-	{{ if and (eq $embed.Title (print "❯ " $name " leaderboard")) $embed.Footer }} {{/* More checks */}}
+	{{ if and (eq $embed.Title (print "❯ Messages leaderboard")) $embed.Footer }} {{/* More checks */}}
 		{{ $page = reFind `\d+` $embed.Footer.Text }} {{/* We presume that this is valid, and get the page num */}}
 		{{ $isValid = true }} {{/* Yay, it is valid */}}
 		{{ deleteMessageReaction nil $.ReactionMessage.ID $.User.ID $action }}
