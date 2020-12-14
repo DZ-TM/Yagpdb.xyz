@@ -1,16 +1,25 @@
-{{/*
-	Made by DZ#6669 (438789314101379072)
+{{/* 
+	
+    Interval CC that reminds you to bump your server
 
-	Trigger Type: Interval
-	Time: 10m
+	Recommended trigger: 10min
+	Trigger type: Interval CC
+
+	Credits:
+	WickedWizard#3588
+
 */}}
 
-{{/* configuration area */}}
-{{$channelid := 740556133038555246}}{{/* ID of the channel you want it to edit the name of, recommended to use a voice channel */}}
+{{/*Configuration Values Start*/}}
+{{$vcid := 783324374051848265}}{{/*Channel where the time remaining for next bump is displayed. Recommended to use a voice channel.*/}}
+{{$reminderchannel := 786145239466639360}} {{/*This should be same as the other file*/}}
+{{/*Configuration Values END*/}}
 
-{{/* do not edit below (unless you know what you're doing c: ) */}}
-{{if $db:=dbGet 0 "bump"}}
-	{{editChannelName $channelid (print "Next Bump in " (($db.ExpiresAt.Sub currentTime).Round .TimeSecond))}}
+{{if $db := dbGet 0 "Cooldown"}}
+    {{editChannelName $vcid (print "Next Bump in " (($db.ExpiresAt.Sub currentTime).Round .TimeSecond))}}
 {{else}}
-	{{editChannelName $channelid "Bump Now!"}}
+    {{editChannelName $vcid (print "You can Bump Now")}}
+    {{$message := "<@&787355830399270963> 🔔 You can Bump again Now!"}} {{/*Update the RoleID. Make sure this is the same as Bump.gotmpl file.*/}}
+    {{$id := sendMessageNoEscapeRetID $reminderchannel $message}}
+    {{dbSet 1 "Bump" (str $id)}}
 {{end}}
