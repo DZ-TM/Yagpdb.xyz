@@ -5,7 +5,7 @@
 	Trigger type: Regex
   Credits: WickedWizard#3588  
   Please read through the code properly and try to learn, rather than copying. Same goes for the other cc's given here too
-  
+  Warning, Leaderboards are against Disboard's ToS. Use them at your own risk.
 */}}
 
 {{/*Configuration Variables Start*/}}
@@ -29,14 +29,14 @@
         {{$t1 := dbIncr .User.ID "BumpXP" 1}}
         {{editMessage $reminderchannel (toInt (dbGet 1 "Bump").Value) (print "~~<@&" $bumprole "> 🔔 You can Bump again Now!~~"}} {{/*Update the RoleID here*/}}
     {{end}}
-{{else if eq ($args.Get 0) "lb"}}
+{{else if eq ($args.Get 0) "lb"}} {{/*Remove this part if you don't want the LeaderBoards*/}}
         {{$rank := 0}}
         {{$list:=""}}
 {{range dbTopEntries "BumpXP" 10 0}}
         {{ $rank = add $rank 1 }}
         {{- $list =print $list "**" $rank ".** " .User.Username "** - **" .Value "\n" -}}
     {{end}}
-        {{$s := sendMessage nil (cembed "title" (joinStr "" "🏆Bumping LeaderBoard for" .Guild.Name "") "description" $list)}}
+        {{$s := sendMessage nil (cembed "title" (joinStr "" "🏆Bumping LeaderBoard for" .Guild.Name "") "description" $list)}} {{/*Remove till this part*/}} 
     {{else if eq ($args.Get 0) "rank"}}
 Your Bump Level is {{$BumpXP.Value}}.
     {{end}} 
