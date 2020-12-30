@@ -32,8 +32,6 @@
 	{{$embed.Set "title" "Tutorial Timed Out!"}}
 	{{$embed.Set "description" (print "You have not entered a response after " $timer " seconds. As such, the tutorial has been cancelled.")}}
 
-	{{/* delete's a user's database after not giving a input */}}
-	{{dbDel .User.ID "waitResponse"}}
 	{{/* sends message */}}
 	{{sendMessage nil (cembed $embed)}}
 
@@ -49,6 +47,7 @@
 			{{/* sets embed for tutorial */}}
 			{{$embed.Set "title" "Activating Tutorial"}}
 			{{$embed.Set "description" "Please enter a **positive** number **below 100**."}}
+			{{sendMessage nil (cembed $embed)}}
 
 			{{/* sets $changeStage to true for usage later and replaces delay for "cancelled" with $timer */}}
 			{{$changeStage =1}}
@@ -187,14 +186,13 @@
 			{{cancelScheduledUniqueCC .CCID (print "cancelled " .User.ID)}}
 		{{end}}
 	{{end}}
+	{{if and (or $databaseValue (dbGet .User.ID "waitResponse"))}}
+	{{/* sends message if database has value, used to make it not spam chat */}}
+	{{sendMessage nil (cembed $embed)}}
+        {{end}}
 {{end}}
 
 {{/* used to change stage to next stage, the reason we use dbSetExpire instead of dbIncr is because dbIncr would still have the same expiration date as the old dbSetExpire, we use dbSetExpire to replace that expiration date */}}
 {{if $changeStage}}
-	{{dbSet .User.ID "waitResponse" (str (add $databaseValue 1))}}
-{{end}}
-
-{{/* sends message if database has value, used to make it not spam chat */}}
-{{if and (or $databaseValue (dbGet .User.ID "waitResponse")) (not .ExecData)}}
-	{{sendMessage nil (cembed $embed)}}
+	{{dbSetExpire .User.ID "waitResponse" (str (add $databaseValue 1)) $timer}}
 {{end}}
