@@ -1,6 +1,5 @@
 {{/*
 	Made by DZ#6669 (438789314101379072)
-
 	Trigger Type: RegEx
 	Trigger: .*
 */}}
@@ -33,6 +32,8 @@
 	{{$embed.Set "title" "Tutorial Timed Out!"}}
 	{{$embed.Set "description" (print "You have not entered a response after " $timer " seconds. As such, the tutorial has been cancelled.")}}
 
+	{{/* delete's a user's database after not giving a input */}}
+	{{dbDel .User.ID "waitResponse"}}
 	{{/* sends message */}}
 	{{sendMessage nil (cembed $embed)}}
 
@@ -51,7 +52,7 @@
 
 			{{/* sets $changeStage to true for usage later and replaces delay for "cancelled" with $timer */}}
 			{{$changeStage =1}}
-			{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
+			{{scheduleUniqueCC .CCID nil $timer (print "cancelled " .User.ID) 1}}
 		{{end}}
 
 	{{/* if $databaseValue has a value */}}
@@ -97,7 +98,7 @@
 			{{end}}
 
 			{{/* replaces delay for "cancelled" with $timer */}}
-			{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
+			{{scheduleUniqueCC .CCID nil $timer (print "cancelled " .User.ID) 1}}
 
 		{{/* checks if $databaseValue is set to the second stage */}}
 		{{else if eq $databaseValue 2}}
@@ -138,7 +139,7 @@
 			{{end}}
 
 			{{/* replaces delay for "cancelled" with $timer */}}
-			{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
+			{{scheduleUniqueCC .CCID nil $timer (print "cancelled " .User.ID) 1}}
 
 		{{/* checks if $databaseValue is set to the third stage */}}
 		{{else if eq $databaseValue 3}}
@@ -156,7 +157,7 @@
 
 				{{/* sets $changeStage to false for later usage and cancels the execution of "cancelled" */}}
 				{{$changeStage =0}}
-				{{cancelScheduledUniqueCC .CCID "cancelled"}}
+				{{cancelScheduledUniqueCC .CCID (print "cancelled " .User.ID)}}
 
 			{{/* if user inputted incorrect data */}}
 			{{else}}
@@ -167,7 +168,7 @@
 
 				{{/* sets $changeStage to false for usage later and replaces delay for "cancelled" with $timer */}}
 				{{$changeStage =0}}
-				{{scheduleUniqueCC .CCID nil $timer "cancelled" 1}}
+				{{scheduleUniqueCC .CCID nil $timer (print "cancelled " .User.ID) 1}}
 			{{end}}
 		{{end}}
 
@@ -183,17 +184,17 @@
 
 			{{/* sets $changeStage to false for later usage and cancels the execution for "cancelled" */}}
 			{{$changeStage =0}}
-			{{cancelScheduledUniqueCC .CCID "cancelled"}}
+			{{cancelScheduledUniqueCC .CCID (print "cancelled " .User.ID)}}
 		{{end}}
 	{{end}}
 {{end}}
 
 {{/* used to change stage to next stage, the reason we use dbSetExpire instead of dbIncr is because dbIncr would still have the same expiration date as the old dbSetExpire, we use dbSetExpire to replace that expiration date */}}
 {{if $changeStage}}
-	{{dbSetExpire .User.ID "waitResponse" (str (add $databaseValue 1)) $timer}}
+	{{dbSet .User.ID "waitResponse" (str (add $databaseValue 1))}}
 {{end}}
 
 {{/* sends message if database has value, used to make it not spam chat */}}
-{{if or $databaseValue (dbGet .User.ID "waitResponse")}}
+{{if and (or $databaseValue (dbGet .User.ID "waitResponse")) (not .ExecData)}}
 	{{sendMessage nil (cembed $embed)}}
 {{end}}
