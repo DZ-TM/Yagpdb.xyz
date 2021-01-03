@@ -2,7 +2,7 @@
 	Made by DZ#5559 (438789314101379072)
 
 	Trigger Type: RegEx
-	Trigger: \A(-|<@!?204255221017214977>)\s*(h(?:ex(?:adecimal)?)?|d(?:ecimal)?)(\s+|\z)
+	Trigger: \A(-|<@!?204255221017214977>)\s*(hex(?:adecimal)?|d(?:ecimal)?)(\s+|\z)
 */}}
 {{/* configuration area */}}
 {{$fail:=sdict "color" 14565697}}
@@ -19,7 +19,7 @@
 	{{sendMessage nil (cembed .embed)}}
 {{end}}
 {{if .CmdArgs}}
-	{{if in .Cmd "h"}}
+	{{if inFold .Cmd "h"}}
 		{{if $data:=index .CmdArgs 0|reFind `\d+`}}
 			{{if and (ge ($data =toInt $data) 0) (le $data 16777216)}}
 				{{$success.Set "color" $data}}
