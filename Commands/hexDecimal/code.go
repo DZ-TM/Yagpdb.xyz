@@ -21,7 +21,7 @@
 {{if .CmdArgs}}
 	{{if inFold .Cmd "h"}}
 		{{if $data:=index .CmdArgs 0|reFind `\d+`}}
-			{{if and (ge ($data =toInt $data) 0) (le $data 16777216)}}
+			{{if and (ge ($data =toInt $data) 0) (le $data 16777215)}}
 				{{$success.Set "color" $data}}
 			{{end}}
 			{{template "change" (sdict
