@@ -9,12 +9,10 @@
 {{$success:=sdict "color" 586350}}
 
 {{/* do not edit below */}}
-{{$decimal:=0}}{{$dict:=dict}}
+{{$decimal:=0}}
 {{define "change"}}
 	{{range $k,$v:=.change}}
-		{{- if $v}}
-			{{- $.embed.Set $k $v}}
-		{{- end -}}
+		{{- $.embed.Set $k $v}}
 	{{end}}
 	{{sendMessage nil (cembed .embed)}}
 {{end}}
@@ -31,9 +29,9 @@
 			)
 		)
 	)}}
-{{else if .CmdArgs}}
+{{else if .StrippedMsg}}
 	{{if inFold .Cmd "h"}}
-		{{if $data:=index .CmdArgs 0|reFind `\d+`}}
+		{{if $data:=index .StrippedMsg 0|reFind `\d+`}}
 			{{if and (ge ($data =toInt $data) 0) (le $data 16777215)}}
 				{{$success.Set "color" $data}}
 			{{end}}
@@ -52,7 +50,7 @@
 			{{template "change" (sdict "embed" $fail "change" (sdict "title" "Incorrect Usage of Command" "description" "The command was used incorrectly.\n```\n-hex <int>\n```"))}}
 		{{end}}
 	{{else}}
-		{{if $data:=index .CmdArgs 0|reFind `0*[A-Fa-f\d]{1,6}`|upper}}
+		{{if $data:=index .StrippedMsg 0|reFind `0*[A-Fa-f\d]{1,6}`|upper}}
 			{{range len ($split:=split $data "")|seq 0}}
 				{{- $decimal =add $decimal (mult (toInt ((sdict "0" 0 "1" 1 "2" 2 "3" 3 "4" 4 "5" 5 "6" 6 "7" 7 "8" 8 "9" 9 "A" 10 "B" 11 "C" 12 "D" 13 "E" 14 "F" 15).Get (sub (len $split) 1 .|index $split|str))) (pow 16 .)) -}}
 			{{end}}
