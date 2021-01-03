@@ -2,7 +2,7 @@
 	Made by DZ#5559 (438789314101379072)
 
 	Trigger Type: RegEx
-	Trigger: \A(-|<@!?204255221017214977>)\s*(hex(?:adecimal)?|d(?:ecimal)?)(\s+|\z)
+	Trigger: \A(-|<@!?204255221017214977>)\s*(hex(?:adecimal)?|d(?:ecimal)?|r(?:andom)?)(\s+|\z)
 */}}
 {{/* configuration area */}}
 {{$fail:=sdict "color" 14565697}}
@@ -18,7 +18,20 @@
 	{{end}}
 	{{sendMessage nil (cembed .embed)}}
 {{end}}
-{{if .CmdArgs}}
+{{if inFold .Cmd "r"}}
+	{{template "change" (sdict
+		"embed" $success
+		"change" (sdict
+			"color" ($color:=randInt 16777216)
+			"title" "Random Colour Picker"
+			"description" (print "The colour for this embedded message is `" $color "` or `#" (printf "%X" $color) "`.")
+			"footer" (sdict
+				"icon_url" (.User.AvatarURL "1024")
+				"text" .Guild.Name
+			)
+		)
+	)}}
+{{else if .CmdArgs}}
 	{{if inFold .Cmd "h"}}
 		{{if $data:=index .CmdArgs 0|reFind `\d+`}}
 			{{if and (ge ($data =toInt $data) 0) (le $data 16777215)}}
@@ -60,5 +73,5 @@
 		{{end}}
 	{{end}}
 {{else}}
-	{{template "change" (sdict "embed" $fail "change" (sdict "title" "Insufficient Args" "description" "Not enough arguments were provided.\n```\n-hex <int>\n-decimal <hex>\n```"))}}
+	{{template "change" (sdict "embed" $fail "change" (sdict "title" "Insufficient Args" "description" "Not enough arguments were provided.\n```\n-hex <int>\n-decimal <hex>\n-random\n```"))}}
 {{end}}
