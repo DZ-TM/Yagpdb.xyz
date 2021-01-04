@@ -55,53 +55,53 @@ This CC is also an absolute fucking mess with the styling, it's a slash of DZ's 
 	{{sendMessage nil (cembed $embed)}}
 {{else}}
 
-	{{ range $num, $qval := $q }}
+	{{range $num, $qval := $q}}
 {{/* Starting*/}}
-		{{ if reFind (print `\A(?i)` $trigger `(\s+|\z)`) $.Message.Content }}
-			{{ if and (not $databaseValue) (not $num) }}
-				{{ $embed.Set "title" $qval.title }}
-				{{ $embed.Set "description" $qval.description }}
-				{{ dbSetExpire $.User.ID "responses" (cslice) $timer }}
+		{{if reFind (print `\A(?i)` $trigger `(\s+|\z)`) $.Message.Content}}
+			{{if and (not $databaseValue) (not $num)}}
+				{{$embed.Set "title" $qval.title}}
+				{{$embed.Set "description" $qval.description}}
+				{{dbSetExpire $.User.ID "responses" (cslice) $timer}}
 				{{$changeStage =1}}
-			{{ end }}
-		{{ else if and $num $databaseValue }}
-			{{ $responses = (cslice).AppendSlice (dbGet $.User.ID "responses").Value }}
-		{{ end }}
+			{{end}}
+		{{else if and $num $databaseValue}}
+			{{$responses =(cslice).AppendSlice (dbGet $.User.ID "responses").Value}}
+		{{end}}
 
 {{/* Cancellation*/}}
-		{{ if and (eq (lower $.Message.Content) "cancel" "quit" "stop") $num }}
+		{{if and (eq (lower $.Message.Content) "cancel" "quit" "stop") $num}}
 			{{$embed.Set "title" "Cancelled"}}
 			{{$embed.Set "description" (print (or $.Member.Nick $.User.Username) "#" $.User.Discriminator " has decided to cancel the questionaire.")}}
 			{{dbDel $.User.ID "waitResponse"}}
 			{{$changeStage =0}}
 			{{cancelScheduledUniqueCC $.CCID "cancelled"}}
 
-		{{ else if and (eq $num $databaseValue) $num }}
+		{{else if and (eq $num $databaseValue) $num}}
 {{/* Normal question*/}}
-			{{ if reFind (index $q (sub $num 1)).regex $.Message.Content }}
+			{{if reFind (index $q (sub $num 1)).regex $.Message.Content}}
 				{{$embed.Set "title" $qval.title}}
 				{{$embed.Set "description" $qval.description}}
-				{{ $responses = $responses.Append $.Message.Content }}
-				{{ dbSetExpire $.User.ID "responses" $responses $timer }}
+				{{$responses = $responses.Append $.Message.Content}}
+				{{dbSetExpire $.User.ID "responses" $responses $timer}}
 				{{$changeStage =1}}
 				{{scheduleUniqueCC $.CCID nil $timer "cancelled" 1}}
 
 {{/* ending questionaire*/}}
-				{{ if (eq (sub (len $q) 1) $databaseValue)}}
+				{{if (eq (sub (len $q) 1) $databaseValue)}}
 					{{$changeStage =0}}
 					{{cancelScheduledUniqueCC $.CCID "cancelled"}}
 					{{dbDel $.User.ID "waitResponse"}}
 					{{dbDel $.User.ID "responses"}}
-					{{ $embed.Set "description" (joinStr "\n" "```\n" $responses.StringSlice "\n```") }}
-				{{ end }}
+					{{$embed.Set "description" (joinStr "\n" "```\n" $responses.StringSlice "\n```")}}
+				{{end}}
 {{/* Error*/}}
-			{{ else }}
+			{{else}}
 				{{template "err"}}
 				{{$changeStage =0}}
-  			{{ end }}
-		{{ end }}
+  			{{end}}
+		{{end}}
 
-	{{ end }}
+	{{end}}
 {{end}}
 
 {{/* used to change stage to next stage, the reason we use dbSetExpire instead of dbIncr is because dbIncr would still have the same expiration date as the old dbSetExpire, we use dbSetExpire to replace that expiration date */}}
@@ -111,7 +111,7 @@ This CC is also an absolute fucking mess with the styling, it's a slash of DZ's 
 
 {{/* sends message if database has value, used to make it not spam chat */}}
 {{if or $databaseValue (dbGet .User.ID "waitResponse")}}
-	{{ if $embed.description }}
+	{{if $embed.description}}
 		{{sendMessage nil (cembed $embed)}}
-	{{ end }}	
+	{{end}}	
 {{end}}
