@@ -71,7 +71,7 @@ This CC is also an absolute fucking mess with the styling, it's a slash of DZ's 
 {{/* Cancellation*/}}
 		{{if and (eq (lower $.Message.Content) "cancel" "quit" "stop") $num}}
 			{{$embed.Set "title" "Cancelled"}}
-			{{$embed.Set "description" (print (or $.Member.Nick $.User.Username) "#" $.User.Discriminator " has decided to cancel the questionaire.")}}
+			{{$embed.Set "description" (print $.User.Username "#" $.User.Discriminator " has decided to cancel the questionaire.")}}
 			{{dbDel $.User.ID "waitResponse"}}
 			{{$changeStage =0}}
 			{{cancelScheduledUniqueCC $.CCID "cancelled"}}
