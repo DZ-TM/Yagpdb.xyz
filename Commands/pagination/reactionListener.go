@@ -30,7 +30,7 @@
 {{/* do not edit below */}}
 {{if and .ReactionAdded .Message.Embeds (eq .Message.Author.ID 204255221017214977)}}
 	{{$embed:=index .Message.Embeds 0|structToSdict}}
-	{{range $k, $v:=$embed}}
+	{{range $k,$v:=$embed}}
 		{{- if eq (kindOf $v true) "struct"}}
 			{{- $embed.Set $k (structToSdict $v)}}
 		{{- end -}}
@@ -66,9 +66,9 @@
 			{{end}}
 		{{end}}
 		{{$pageNum =len $pages|mod $pageNum|toInt}}
-		{{range $k, $v:=index $pages $pageNum}}
+		{{range $k,$v:=index $pages $pageNum}}
 			{{- $embed.Set $k $v -}}
 		{{end}}
-		{{editMessage nil $.Message.ID (cembed $embed)}}
+		{{editMessage nil .Message.ID (cembed $embed)}}
 	{{end}}
 {{end}}
