@@ -45,7 +45,7 @@
 		{{- $embed.Del (lower .|title) -}}
 	{{end}}
 	{{range $i,$_:=$pages}}
-		{{- (index $pages $i).Set "description" (print (or .description "") "[](" $i ")")}}
+		{{- (index $pages $i).Set "description" (print (or .description "") "[](" $i ")") -}}
 	{{end}}
 	{{if $pageNum:=reFindAllSubmatches `\[\]\((\d+)\)` (index .Message.Embeds 0).Description}}
 		{{$pageNum:=len $pages|mod (index $pageNum 0 1)|toInt}}
