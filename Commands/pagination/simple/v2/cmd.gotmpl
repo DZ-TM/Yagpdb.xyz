@@ -1,0 +1,69 @@
+{{/*
+	Made by DZ#6669 (438789314101379072)
+	Trigger Type: Command
+	Trigger of your choice.
+
+	NOTE: Read README.md for instructions on configuration.
+*/}}
+
+{{/* configuration area */}}
+{{$isWrap:=true}}{{/* if this is set to true, this makes it so if the pagination is on the final page, it moves to the first page assuming the 'right_arrow' reaction is clicked or if it is on the first page and the 'left_arrow' reaction is clicked, it moves to the final page */}}
+{{$delete:=cslice "image"}}{{/* this means that if there was, for example an image field under the first embed and not in another stage, it will not retain the image / it deletes it per run */}}
+{{$pages:=cslice
+	(sdict
+		"title" "Title A"
+		"description" "Description A"
+		"image" (sdict "url" "https://m.hindustantimes.com/rf/image_size_960x540/HT/p2/2018/05/16/Pictures/_1571873a-58de-11e8-b431-73159b4b09e2.jpg")
+		"color" 586350
+	)
+	(sdict
+		"title" "Title B"
+		"description" "Description B"
+		"image" (sdict "url" "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/funny-dog-captions-1563456605.jpg?crop=0.747xw:1.00xh;0.0459xw,0&resize=480:*")
+		"color" 586350
+	)
+	(sdict
+		"title" "Title C"
+		"description" "Description C"
+		"image" (sdict "url" "https://github.com/jigsawpieces/dog-api-images/blob/master/doberman/doberman.jpg?raw=true")
+		"color" 586350
+	)
+}}{{/* embeds within a slice where the embeds are set as sdicts, the pages are in order of the slice e.g. the first element in the slice is the first page */}}
+
+{{/* do not edit below */}}
+{{$syntax:=print "\n```\n" .Cmd " [PageNum]\n```"}}
+{{$errorMessages:=sdict
+	"outsideRange" (sdict
+		"title" "Out Of Range"
+		"description" (print "The number given was out of range. Please ensure the number is between 1 and " (len $pages) "." $syntax)
+		"color" 14565697
+	)
+	"notValid" (sdict
+		"title" "Invalid Syntax"
+		"description" (print "Please ensure you enter the correct syntax. You must enter a number as the whole message after the command." $syntax)
+		"color" 14565697
+	)
+}}{{/* embeds for error messages, sdict can be changed but sdict keys must stay the same */}}
+{{with .StrippedMsg}}
+	{{with toInt .}}
+		{{if and (ge . 1) (le . (len $pages))}}
+			{{range $i,$_:=$pages}}
+				{{- (index $pages $i).Set "description" (print (or .description "") "[](" $i ")") -}}
+			{{end}}
+			{{dbSet 0 "pagination_config" (sdict "isWrap" $isWrap "delete" $delete "pages" $pages)}}
+			{{$mID:=sendMessageRetID nil (sub . 1|index $pages|cembed)}}
+			{{addMessageReactions nil $mID "⬅️" "➡️"}}
+		{{else}}
+			{{sendMessage nil (cembed $errorMessages.outsideRange)}}
+		{{end}}
+	{{else}}
+		{{sendMessage nil (cembed $errorMessages.notValid)}}
+	{{end}}
+{{else}}
+	{{range $i,$_:=$pages}}
+		{{- (index $pages $i).Set "description" (print (or .description "") "[](" $i ")") -}}
+	{{end}}
+	{{dbSet 0 "pagination_config" (sdict "isWrap" $isWrap "delete" $delete "pages" $pages)}}
+	{{$mID:=sendMessageRetID nil (index $pages 0|cembed)}}
+	{{addMessageReactions nil $mID "⬅️" "➡️"}}
+{{end}}

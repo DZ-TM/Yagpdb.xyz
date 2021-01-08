@@ -1,0 +1,50 @@
+{{/*
+	Made by DZ#6669 (438789314101379072)
+	Trigger Type: Reaction
+	Trigger: Added Only
+
+	NOTE: Read README.md for instructions on configuration.
+*/}}
+{{/* do not edit below */}}
+{{if $db:=and .ReactionAdded .Message.Embeds (eq .Message.Author.ID 204255221017214977) (dbGet 0 "pagination_config").Value}}
+	{{$embed:=index .Message.Embeds 0|structToSdict}}
+	{{$pages:=cslice.AppendSlice (or $db.pages cslice)}}
+	{{range $k,$v:=$embed}}
+		{{- if eq (kindOf $v true) "struct"}}
+			{{- $embed.Set $k (structToSdict $v)}}
+		{{- end -}}
+	{{end}}
+	{{with $embed.Author}}
+		{{.Set "icon_url" .IconURL}}
+	{{end}}
+	{{with $embed.Footer}}
+		{{.Set "icon_url" .IconURL}}
+	{{end}}
+	{{range $db.delete}}
+		{{- $embed.Del (lower .|title) -}}
+	{{end}}
+	{{if $pageNum:=reFindAllSubmatches `\[\]\((\d+)\)` (index .Message.Embeds 0).Description}}
+		{{$pageNum:=len $pages|mod (index $pageNum 0 1)|toInt}}
+		{{deleteMessageReaction nil .Message.ID .User.ID "⬅️" "➡️"}}
+		{{if eq .Reaction.Emoji.Name "⬅️"}}
+			{{if $db.isWrap}}
+				{{if eq $pageNum 0}}
+					{{$pageNum =len $pages|add -1}}
+				{{else}}
+					{{$pageNum =sub $pageNum 1}}
+				{{end}}
+			{{else if gt $pageNum 0}}
+				{{$pageNum =sub $pageNum 1}}
+			{{end}}
+		{{else if eq .Reaction.Emoji.Name "➡️"}}
+			{{if or $db.isWrap (lt $pageNum (len $pages|add -1))}}
+				{{$pageNum =add $pageNum 1}}
+			{{end}}
+		{{end}}
+		{{$pageNum =len $pages|mod $pageNum|toInt}}
+		{{range $k,$v:=index $pages $pageNum}}
+			{{- $embed.Set $k $v -}}
+		{{end}}
+		{{editMessage nil .Message.ID (cembed $embed)}}
+	{{end}}
+{{end}}
