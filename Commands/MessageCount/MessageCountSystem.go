@@ -1,7 +1,7 @@
 {{/*
 	Regex: .*
 	Commands:
-		-topmessages
+		-topmessages (If prefix is `-`)
 		-msgcount
 */}}
 
