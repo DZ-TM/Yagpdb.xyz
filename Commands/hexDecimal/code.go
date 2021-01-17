@@ -2,7 +2,7 @@
 	Made by DZ#5559 (438789314101379072)
 
 	Trigger Type: RegEx
-	Trigger: \A(-|<@!?204255221017214977>)\s*(hex(?:adecimal)?|d(?:ecimal)?|r(?:andom)?)(\s+|\z)
+	Trigger: \A(?:\-|<@!?204255221017214977>)\s*(?:hex(?:adecimal)?|d(?:ecimal)?|r(?:andom)?)(?:\s+|\z)
 
 	MIT License
 */}}
