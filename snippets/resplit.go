@@ -9,7 +9,7 @@
 
     How it works:
         It gets a unique character that is not within the string itself.
-        It replaces all matches of the string by that unique character.
+        It replaces all matches of the regular expression by that unique character.
         It splits the string by that character.
 
     Made by DZ#6669 (438789314101379072)
