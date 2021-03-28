@@ -13,6 +13,8 @@
         It splits the string by that character.
 
     Made by DZ#6669 (438789314101379072)
+    
+    MIT License
 */}}
 
 {{define "reSplit"}}
