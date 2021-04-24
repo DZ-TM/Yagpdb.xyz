@@ -14,3 +14,5 @@ The regex must be any valid RegEx in Golang flavour of RegEx.
 Max must be an integer, if it is -1 or equivalent, it returns all results, otherwise the result is limited (in the amount of elements it can have in the slice) by the max.
 
 reSplit returns a string slice.
+
+> This file will be deleted in a small while, as it is no longer needed.
