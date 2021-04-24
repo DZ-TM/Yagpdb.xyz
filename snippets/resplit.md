@@ -5,7 +5,6 @@ func (re *Regexp) Split(s string, n int) []string
 ```
 > Split slices s into substrings separated by the expression and returns a slice of the substrings between those expression matches.<br><br>
 The slice returned by this method consists of all the substrings of s not contained in the slice returned by FindAllString. When called on an expression that contains no metacharacters, it is equivalent to strings.SplitN.
-### How does it work?
 ###### Syntax of reSplit
 ```
 reSplit RegEx string max
