@@ -1,5 +1,5 @@
 ## Note
-`reSplit` has now been added to YAGPDB.xyz, so this snippet of code is no longer needed. Taken from golang docs:
+`reSplit` has now been added to YAGPDB.xyz, so this snippet of code is no longer needed. Taken from [Golang docs](https://golang.org/pkg/regexp/#example_Regexp_Split):
 ```
 func (re *Regexp) Split(s string, n int) []string
 ```
