@@ -6,7 +6,7 @@ SUGGESTED TRIGGER: howgay
 
 DESCRIPTION: This CC gives the user an amount of Gayness that will attach to them like a parasite that will never go away. But that's not all... it will also display all the most gays in the server in a Top. 
 
-/*}}
+*/}}
 
 {{/*VARIABLES*/}}
 
